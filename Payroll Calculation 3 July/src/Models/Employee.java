@@ -16,6 +16,15 @@ abstract public class Employee {
 
     abstract double earnings();
 
+    // I was repeating this logic everywhere so I make it a reusable method
+    protected boolean numericInputValidation(double input, String inputName) {
+        if (input < 0) {
+            System.out.println(inputName+" cannot be negative");
+            return false;
+        }
+        return true;
+    }
+
     @Override
     public String toString() {
         return "Employee{" +

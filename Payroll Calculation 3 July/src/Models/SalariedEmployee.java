@@ -9,17 +9,17 @@ public class SalariedEmployee extends Employee {
             throw new IllegalArgumentException("Weekly salary cannot be negative");
         this.weeklySalary = weeklySalary;
     }
+    public SalariedEmployee(String firstName, String lastName, String socialSecurityNumber) {
+        this(firstName, lastName, socialSecurityNumber, 0.0);
+    }
 
     public double getWeeklySalary() {
         return weeklySalary;
     }
 
     public void updateWeeklySalary(double weeklySalary) {
-        if (weeklySalary < 0){
-            System.out.println("Weekly salary cannot be negative");
-            return;
-        }
-        this.weeklySalary = weeklySalary;
+        if (!numericInputValidation(weeklySalary,"Weekly salary"))
+            this.weeklySalary = weeklySalary;
     }
 
     @Override
