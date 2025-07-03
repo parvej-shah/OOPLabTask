@@ -1,7 +1,7 @@
 package Models;
 
 public class CommissionEmployee extends Employee {
-    private final double commissionRate = 0.10; //10%
+    protected final double commissionRate = 0.10; //10%
     private double grossSales;
     public CommissionEmployee(String firstName, String lastName, String socialSecurityNumber, double grossSales) {
         super(firstName, lastName, socialSecurityNumber);
@@ -14,6 +14,17 @@ public class CommissionEmployee extends Employee {
         this(firstName, lastName, socialSecurityNumber, 0);
     }
 
+    public double getCommissionRate() {
+        return commissionRate;
+    }
+
+    public double getGrossSales() {
+        return grossSales;
+    }
+
+    public void setGrossSales(double grossSales) {
+        this.grossSales = grossSales;
+    }
 
     @Override
     double earnings() {
