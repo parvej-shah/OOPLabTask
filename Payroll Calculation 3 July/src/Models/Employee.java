@@ -27,10 +27,6 @@ abstract public class Employee {
 
     @Override
     public String toString() {
-        return "Employee{" +
-                "firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", socialSecurityNumber='" + socialSecurityNumber + '\'' +
-                '}';
+        return String.format("%s %s (SSN: %s)", firstName, lastName, socialSecurityNumber);
     }
 }
