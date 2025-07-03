@@ -1,27 +1,25 @@
 package Models;
 
 public class HourlyEmployee extends Employee {
-    private double hourlySalary;
+    private final double hourlySalary = 10;
     private double hoursWorked;
-    public HourlyEmployee(String firstName, String lastName, String socialSecurityNumber,double hourlySalary, double hoursWorked,double salary) {
+    public HourlyEmployee(String firstName, String lastName, String socialSecurityNumber, double hoursWorked) {
         super(firstName, lastName, socialSecurityNumber);
-        if (hourlySalary < 0 || hoursWorked < 0 || hoursWorked > 168)
-            throw new IllegalArgumentException("Hours Worked must be between 0 and 168 and hourly salary must be greater than 0");
-        this.hourlySalary = hourlySalary;
+        if ( hoursWorked < 0 || hoursWorked > 168)
+            throw new IllegalArgumentException("Hours Worked must be between 0 and 168");
         this.hoursWorked = hoursWorked;
     }
 
-    public double getHourlySalary() {
-        return hourlySalary;
-    }
-
-    public void setHourlySalary(double hourlySalary) {
-        if(!numericInputValidation(hourlySalary, "Hourly salary"))
-            this.hourlySalary = hourlySalary;
+    public HourlyEmployee(String firstName, String lastName, String socialSecurityNumber) {
+        this(firstName, lastName, socialSecurityNumber, 0);
     }
 
     public double getHoursWorked() {
         return hoursWorked;
+    }
+
+    public double getHourlySalary() {
+        return hourlySalary;
     }
 
     public void setHoursWorked(double hoursWorked) {
