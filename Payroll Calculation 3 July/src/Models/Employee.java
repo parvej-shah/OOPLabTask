@@ -14,15 +14,15 @@ abstract public class Employee {
         this.socialSecurityNumber = socialSecurityNumber;
     }
 
-    abstract double earnings();
+    abstract public double earnings();
 
     // I was repeating this logic everywhere so I make it a reusable method
     protected boolean numericInputValidation(double input, String inputName) {
-        if (input < 0) {
-            System.out.println(inputName+" cannot be negative");
-            return false;
+        if (input >= 0) {
+            return true;
         }
-        return true;
+        System.out.println(inputName+" cannot be negative");
+        return false;
     }
 
     @Override

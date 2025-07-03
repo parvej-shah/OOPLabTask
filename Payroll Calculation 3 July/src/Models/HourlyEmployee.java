@@ -23,12 +23,12 @@ public class HourlyEmployee extends Employee {
     }
 
     public void setHoursWorked(double hoursWorked) {
-        if(!numericInputValidation(hoursWorked, "Hours worked") && hoursWorked <=168)
+        if(numericInputValidation(hoursWorked, "Hours worked") && hoursWorked <=168)
             this.hoursWorked = hoursWorked;
     }
 
     @Override
-    double earnings() {
+   public double earnings() {
         if(hoursWorked <= 40)
             return hoursWorked*hourlySalary;
         return hourlySalary*(hoursWorked - 40)*1.5 + hourlySalary*40;

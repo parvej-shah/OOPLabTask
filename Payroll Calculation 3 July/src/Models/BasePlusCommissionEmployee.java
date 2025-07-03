@@ -8,7 +8,7 @@ public class BasePlusCommissionEmployee extends CommissionEmployee{
 
     public BasePlusCommissionEmployee(String firstName, String lastName, String socialSecurityNumber, double grossSales, double baseSalary) {
         super(firstName, lastName, socialSecurityNumber, grossSales);
-        if (!numericInputValidation(baseSalary,"Base Salary"))
+        if (!numericInputValidation(baseSalary, "Base Salary"))
             throw new IllegalArgumentException("Base Salary should be greater than 0.");
         this.baseSalary = baseSalary;
     }
@@ -18,12 +18,12 @@ public class BasePlusCommissionEmployee extends CommissionEmployee{
     }
 
     public void setBaseSalary(double baseSalary) {
-        if (!numericInputValidation(baseSalary,"Base Salary"))
+        if (numericInputValidation(baseSalary, "Base Salary"))
             this.baseSalary = baseSalary;
     }
 
     @Override
-    double earnings() {
+    public double earnings() {
         return super.earnings() + baseSalary;
     }
 }

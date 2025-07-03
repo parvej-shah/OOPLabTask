@@ -5,7 +5,7 @@ public class CommissionEmployee extends Employee {
     private double grossSales;
     public CommissionEmployee(String firstName, String lastName, String socialSecurityNumber, double grossSales) {
         super(firstName, lastName, socialSecurityNumber);
-        if (!numericInputValidation(grossSales,"Gross sales"))
+        if (!numericInputValidation(grossSales, "Gross sales"))
             throw new IllegalArgumentException("Gross Sales must be greater than 0");
         this.grossSales = grossSales;
     }
@@ -27,7 +27,7 @@ public class CommissionEmployee extends Employee {
     }
 
     @Override
-    double earnings() {
+    public double earnings() {
         return grossSales * commissionRate;
     }
 

@@ -18,12 +18,12 @@ public class SalariedEmployee extends Employee {
     }
 
     public void updateWeeklySalary(double weeklySalary) {
-        if (!numericInputValidation(weeklySalary,"Weekly salary"))
+        if (numericInputValidation(weeklySalary, "Weekly salary"))
             this.weeklySalary = weeklySalary;
     }
 
     @Override
-    double earnings() {
+    public double earnings() {
         return weeklySalary;
     }
 
