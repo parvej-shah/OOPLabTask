@@ -48,10 +48,11 @@ public class Main {
         JPanel genderPanel = new JPanel();
         JRadioButton male = new JRadioButton("Male");
         JRadioButton female = new JRadioButton("Female");
-        JRadioButton other = new JRadioButton("Other");
         ButtonGroup genderGroup = new ButtonGroup();
-        genderGroup.add(male); genderGroup.add(female); genderGroup.add(other);
-        genderPanel.add(male); genderPanel.add(female); genderPanel.add(other);
+        genderGroup.add(male);
+        genderGroup.add(female);
+        genderPanel.add(male);
+        genderPanel.add(female);
         panel.add(genderPanel, gbc);
 
         // DOB
@@ -62,7 +63,9 @@ public class Main {
         JComboBox<String> dayBox = new JComboBox<>(Constants.DAYS);
         JComboBox<String> monthBox = new JComboBox<>(Constants.MONTHS);
         JComboBox<String> yearBox = new JComboBox<>(Constants.YEARS);
-        dobPanel.add(dayBox); dobPanel.add(monthBox); dobPanel.add(yearBox);
+        dobPanel.add(dayBox);
+        dobPanel.add(monthBox);
+        dobPanel.add(yearBox);
         panel.add(dobPanel, gbc);
 
         // Degree
@@ -138,7 +141,7 @@ public class Main {
             String email = emailField.getText().trim();
             String phone = phoneField.getText().trim();
             String address = addressField.getText().trim();
-            String gender = male.isSelected() ? "Male" : (female.isSelected() ? "Female" : (other.isSelected() ? "Other" : ""));
+            String gender = male.isSelected() ? "Male" : "Female";
             String dob = dayBox.getSelectedItem() + "-" + monthBox.getSelectedItem() + "-" + yearBox.getSelectedItem();
             String degree = (String) degreeBox.getSelectedItem();
             String batch = (String) batchBox.getSelectedItem();
@@ -148,31 +151,12 @@ public class Main {
             String experience = experienceArea.getText().trim();
             String photo = selectedFilePath[0];
 
-            if (name.isEmpty() || email.isEmpty() || phone.isEmpty() || address.isEmpty() || gender.isEmpty() || photo.isEmpty()
-                    || batch.isEmpty() || roll.isEmpty() || position.isEmpty() || experience.isEmpty()) {
-                JOptionPane.showMessageDialog(frame, "Please fill all fields and upload a photo.", "Error", JOptionPane.ERROR_MESSAGE);
-                return;
+            Participant participant = new Participant(name,email,phone,address,gender ,dob,degree,batch,roll,position,playedInterDept,experience,photo);
+            if (Validator.isValid(participant)) {
+                DataHandler.saveToFile(participant,"participants.txt");
             }
-
-            try (FileWriter writer = new FileWriter("registration_data.txt", true)) {
-                writer.write("Name: " + name + "\n");
-                writer.write("Email: " + email + "\n");
-                writer.write("Phone: " + phone + "\n");
-                writer.write("Address: " + address + "\n");
-                writer.write("Gender: " + gender + "\n");
-                writer.write("DOB: " + dob + "\n");
-                writer.write("Degree: " + degree + "\n");
-                writer.write("Batch: " + batch + "\n");
-                writer.write("Roll No: " + roll + "\n");
-                writer.write("Preferred Position: " + position + "\n");
-                writer.write("Played Inter-Department: " + (playedInterDept ? "Yes" : "No") + "\n");
-                writer.write("Experience: " + experience + "\n");
-                writer.write("Photo Path: " + photo + "\n");
-                writer.write("-----------------------------------\n");
-
-                JOptionPane.showMessageDialog(frame, "Registration successful!", "Success", JOptionPane.INFORMATION_MESSAGE);
-            } catch (IOException ex) {
-                JOptionPane.showMessageDialog(frame, "Error saving data.", "Error", JOptionPane.ERROR_MESSAGE);
+            else{
+                JOptionPane.showMessageDialog(frame,"Invalid Data");
             }
         });
 

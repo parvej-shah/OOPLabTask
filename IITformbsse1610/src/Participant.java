@@ -19,8 +19,8 @@ public class Participant {
 
     // Constructor
     public Participant(String name, String phone, String email, String address, String gender,
-                       String dateOfBirth, String degree, String batchNumber,String rollNo, String picturePath,
-                       String preferredPosition, boolean playedInterDepartment, String experience) {
+                       String dateOfBirth, String degree, String batchNumber,String rollNo,
+                       String preferredPosition, boolean playedInterDepartment, String experience,String picturePath) {
         this.name = name;
         this.phone = phone;
         this.email = email;

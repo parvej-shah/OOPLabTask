@@ -12,6 +12,8 @@ public class Validator {
         if (isEmpty(p.getDegree())) return false;
         if (isEmpty(p.getPicturePath())) return false;
         if (isEmpty(p.getPreferredPosition())) return false;
+        if (isEmpty(p.getBatchNumber())) return false;
+        if(isEmpty(p.getRollNo())) return false;
         return !isEmpty(p.getExperience());
     }
 
