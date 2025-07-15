@@ -1,13 +1,12 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
 import java.io.*;
 
 public class Main {
     public static void main(String[] args) {
         JFrame frame = new JFrame("IITDU Football League Registration");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(700, 600);
+        frame.setSize(800, 700);
 
         JPanel panel = new JPanel(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
@@ -35,6 +34,13 @@ public class Main {
         JTextField phoneField = new JTextField(20);
         panel.add(phoneField, gbc);
 
+        // Address
+        gbc.gridx = 0; gbc.gridy++;
+        panel.add(new JLabel("Address:"), gbc);
+        gbc.gridx = 1;
+        JTextField addressField = new JTextField(20);
+        panel.add(addressField, gbc);
+
         // Gender
         gbc.gridx = 0; gbc.gridy++;
         panel.add(new JLabel("Gender:"), gbc);
@@ -53,14 +59,9 @@ public class Main {
         panel.add(new JLabel("Date of Birth:"), gbc);
         gbc.gridx = 1;
         JPanel dobPanel = new JPanel();
-        String[] days = new String[31];
-        for (int i = 1; i <= 31; i++) days[i - 1] = String.valueOf(i);
-        String[] months = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
-        String[] years = new String[31];
-        for (int i = 0; i < 31; i++) years[i] = String.valueOf(1990 + i);
-        JComboBox<String> dayBox = new JComboBox<>(days);
-        JComboBox<String> monthBox = new JComboBox<>(months);
-        JComboBox<String> yearBox = new JComboBox<>(years);
+        JComboBox<String> dayBox = new JComboBox<>(Constants.DAYS);
+        JComboBox<String> monthBox = new JComboBox<>(Constants.MONTHS);
+        JComboBox<String> yearBox = new JComboBox<>(Constants.YEARS);
         dobPanel.add(dayBox); dobPanel.add(monthBox); dobPanel.add(yearBox);
         panel.add(dobPanel, gbc);
 
@@ -68,9 +69,43 @@ public class Main {
         gbc.gridx = 0; gbc.gridy++;
         panel.add(new JLabel("Degree:"), gbc);
         gbc.gridx = 1;
-        String[] degrees = {"BSc in CSE", "MSc in CSE", "PhD in CSE"};
-        JComboBox<String> degreeBox = new JComboBox<>(degrees);
+        JComboBox<String> degreeBox = new JComboBox<>(Constants.DEGREES);
         panel.add(degreeBox, gbc);
+
+        // Batch Number
+        gbc.gridx = 0; gbc.gridy++;
+        panel.add(new JLabel("Batch Number:"), gbc);
+        gbc.gridx = 1;
+        JComboBox<String> batchBox = new JComboBox<>(Constants.BATCHNUMBERS);
+        panel.add(batchBox, gbc);
+
+        // Roll No
+        gbc.gridx = 0; gbc.gridy++;
+        panel.add(new JLabel("Roll No:"), gbc);
+        gbc.gridx = 1;
+        JComboBox<String> rollBox = new JComboBox<>(Constants.ROLLNUMBERS);
+        panel.add(rollBox, gbc);
+
+        // Preferred Position
+        gbc.gridx = 0; gbc.gridy++;
+        panel.add(new JLabel("Preferred Position:"), gbc);
+        gbc.gridx = 1;
+        JComboBox<String> positionBox = new JComboBox<>(Constants.POSITIONS);
+        panel.add(positionBox, gbc);
+
+        // Played Inter-Department
+        gbc.gridx = 0; gbc.gridy++;
+        panel.add(new JLabel("Played Inter-Department?"), gbc);
+        gbc.gridx = 1;
+        JCheckBox interDeptCheck = new JCheckBox("Yes");
+        panel.add(interDeptCheck, gbc);
+
+        // Experience
+        gbc.gridx = 0; gbc.gridy++;
+        panel.add(new JLabel("Football Experience:"), gbc);
+        gbc.gridx = 1;
+        JTextArea experienceArea = new JTextArea(4, 20);
+        panel.add(new JScrollPane(experienceArea), gbc);
 
         // Profile Photo
         gbc.gridx = 0; gbc.gridy++;
@@ -102,12 +137,19 @@ public class Main {
             String name = nameField.getText().trim();
             String email = emailField.getText().trim();
             String phone = phoneField.getText().trim();
+            String address = addressField.getText().trim();
             String gender = male.isSelected() ? "Male" : (female.isSelected() ? "Female" : (other.isSelected() ? "Other" : ""));
             String dob = dayBox.getSelectedItem() + "-" + monthBox.getSelectedItem() + "-" + yearBox.getSelectedItem();
             String degree = (String) degreeBox.getSelectedItem();
+            String batch = (String) batchBox.getSelectedItem();
+            String roll = (String) rollBox.getSelectedItem();
+            String position = (String) positionBox.getSelectedItem();
+            boolean playedInterDept = interDeptCheck.isSelected();
+            String experience = experienceArea.getText().trim();
             String photo = selectedFilePath[0];
 
-            if (name.isEmpty() || email.isEmpty() || phone.isEmpty() || gender.isEmpty() || photo.isEmpty()) {
+            if (name.isEmpty() || email.isEmpty() || phone.isEmpty() || address.isEmpty() || gender.isEmpty() || photo.isEmpty()
+                    || batch.isEmpty() || roll.isEmpty() || position.isEmpty() || experience.isEmpty()) {
                 JOptionPane.showMessageDialog(frame, "Please fill all fields and upload a photo.", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
@@ -116,9 +158,15 @@ public class Main {
                 writer.write("Name: " + name + "\n");
                 writer.write("Email: " + email + "\n");
                 writer.write("Phone: " + phone + "\n");
+                writer.write("Address: " + address + "\n");
                 writer.write("Gender: " + gender + "\n");
                 writer.write("DOB: " + dob + "\n");
                 writer.write("Degree: " + degree + "\n");
+                writer.write("Batch: " + batch + "\n");
+                writer.write("Roll No: " + roll + "\n");
+                writer.write("Preferred Position: " + position + "\n");
+                writer.write("Played Inter-Department: " + (playedInterDept ? "Yes" : "No") + "\n");
+                writer.write("Experience: " + experience + "\n");
                 writer.write("Photo Path: " + photo + "\n");
                 writer.write("-----------------------------------\n");
 

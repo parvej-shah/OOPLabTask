@@ -6,7 +6,21 @@ public class Constants {
             "MSc in Computer Science and Engineering",
             "PhD in Computer Science and Engineering"
     };
+    // Batch numbers
+    public static final String[] BATCHNUMBERS = new String[20];
+    static {
+        for (int i = 0; i < 20; i++) {
+            BATCHNUMBERS[i] = String.valueOf(i + 1);
+        }
+    }
+    // roll numbers
 
+    public static final String[] ROLLNUMBERS = new String[56];
+    static {
+        for (int i = 0; i < 56; i++) {
+            ROLLNUMBERS[i] = String.valueOf(i + 1);
+        }
+    }
     // Preferred playing positions
     public static final String[] POSITIONS = {
             "Goalkeeper",

@@ -8,6 +8,8 @@ public class Participant {
     private String gender;
     private String dateOfBirth;
     private String degree;
+    private String batchNumber;
+    private String rollNo;
     private String picturePath;
 
     // Football Info
@@ -17,7 +19,7 @@ public class Participant {
 
     // Constructor
     public Participant(String name, String phone, String email, String address, String gender,
-                       String dateOfBirth, String degree, String picturePath,
+                       String dateOfBirth, String degree, String batchNumber,String rollNo, String picturePath,
                        String preferredPosition, boolean playedInterDepartment, String experience) {
         this.name = name;
         this.phone = phone;
@@ -26,6 +28,8 @@ public class Participant {
         this.gender = gender;
         this.dateOfBirth = dateOfBirth;
         this.degree = degree;
+        this.batchNumber = batchNumber;
+        this.rollNo = rollNo;
         this.picturePath = picturePath;
         this.preferredPosition = preferredPosition;
         this.playedInterDepartment = playedInterDepartment;
@@ -122,6 +126,26 @@ public class Participant {
         this.experience = experience;
     }
 
+    public String getBatchNumber() {
+        return batchNumber;
+    }
+
+    public void setBatchNumber(String batchNumber) {
+        this.batchNumber = batchNumber;
+    }
+
+    public String getRollNo() {
+        return rollNo;
+    }
+
+    public void setRollNo(String rollNo) {
+        this.rollNo = rollNo;
+    }
+
+    public boolean isPlayedInterDepartment() {
+        return playedInterDepartment;
+    }
+
     // For easy writing to file
     @Override
     public String toString() {
@@ -132,6 +156,8 @@ public class Participant {
                 "\nGender: " + gender +
                 "\nDate of Birth: " + dateOfBirth +
                 "\nDegree: " + degree +
+                "\nBatch Number: " + batchNumber +
+                "\nRoll No: " + rollNo +
                 "\nPicture Path: " + picturePath +
                 "\nPreferred Position: " + preferredPosition +
                 "\nPlayed Inter-departmental: " + (playedInterDepartment ? "Yes" : "No") +
