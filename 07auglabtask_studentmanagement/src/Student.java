@@ -29,14 +29,13 @@ public class Student {
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
-        if (obj == null || getClass() != obj.getClass()) return false;
-        Student other = (Student) obj;
-        return studentId == other.studentId;
+        if (!(obj instanceof Student newStudent)) return false;
+        return studentId == newStudent.getStudentId();
     }
 
     @Override
     public int hashCode() {
-        return Integer.hashCode(studentId);
+        return studentId;
     }
-    
+
 }

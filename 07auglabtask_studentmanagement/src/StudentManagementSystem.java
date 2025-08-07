@@ -19,42 +19,47 @@ public class StudentManagementSystem {
         allStudents.add(student3);
         allStudents.add(student4);
         allStudents.add(student5);
-        // taskShowArrayList(allStudents);
-        // enrolement(allStudents);
+
+        taskShowArrayList(allStudents);
+        enrollment(allStudents);
         taskHashmap(allStudents);
 
     }
 
-    public static void enrolement(List<Student> allStudents) {
-        java.util.Set<Student> courseEnrolled = new java.util.HashSet<>();
+    public static void enrollment(List<Student> allStudents) {
+        java.util.Set<Student> enrolled = new java.util.HashSet<>();
 
         Student s1 = allStudents.get(0);
-        Student s3 = allStudents.get(4);
+        Student s3 = allStudents.get(1);
         Student s2 = allStudents.get(2);
-        courseEnrolled.add(s1);
-        courseEnrolled.add(s3);
-        courseEnrolled.add(s2);
+        enrolled.add(s1);
+        enrolled.add(s3);
+        enrolled.add(s2);
 
-        boolean addedAgain = courseEnrolled.add(s2);
+        boolean addedAgain = enrolled.add(s2);
         System.out.println("Tamim again? " + addedAgain);
 
-        boolean isEnrolled = courseEnrolled.contains(s2);
+        boolean isEnrolled = enrolled.contains(s2);
         System.out.println("Is Tamim (id=3) enrolled? " + isEnrolled);
 
         Student checkStudent = allStudents.get(1); // sakib
-        boolean isSakibEnrolled = courseEnrolled.contains(checkStudent);
+        boolean isSakibEnrolled = enrolled.contains(checkStudent);
         System.out.println("Is Sakib (id=2) enrolled? " + isSakibEnrolled);
 
         // student with same id
         Student student3 = new Student(3, "Parvej", "Physics");
-        boolean isParvejEnrolled = courseEnrolled.contains(student3);
+        // boolean addedParvej = enrolled.add(student3);
+        // System.out.println("Parvej added? " + addedParvej);
+        boolean isParvejEnrolled = enrolled.contains(student3);
         System.out.println("Is Parvej (id=3) enrolled? " + isParvejEnrolled);
 
         System.out.println("\nAll students enrolled in the course:");
-        for (Student s : courseEnrolled) {
+        for (Student s : enrolled) {
             System.out.println(s);
         }
     }
+
+    
     public static void taskShowArrayList(List<Student> allStudents) {
 
         System.out.println("All Students in the University");
@@ -62,10 +67,10 @@ public class StudentManagementSystem {
             System.out.println(student.toString());
         }
 
-        System.out.println("\nDemonstrating ArrayList Operations");
+        System.out.println("\nArrayList Operations");
         Student newStudent = new Student(6, "Farhan", "Engineering");
         allStudents.add(2, newStudent);
-        System.out.println("After adding Farhan at index 2:");
+        System.out.println("After adding new at index 2:");
         for (int i = 0; i < allStudents.size(); i++) {
             System.out.println("Index " + i + ": " + allStudents.get(i).toString());
         }
@@ -73,7 +78,7 @@ public class StudentManagementSystem {
         System.out.println("\nRemoving student at index 1:");
         Student removedByIndex = allStudents.remove(1);
         System.out.println("Removed: " + removedByIndex.toString());
-        System.out.println("Students after removal by index:");
+        System.out.println("Students after removed by index:");
         for (Student student : allStudents) {
             System.out.println(student.toString());
         }
@@ -95,6 +100,17 @@ public class StudentManagementSystem {
         for (Student student : allStudents) {
             studentMap.put(student.getStudentId(), student);
         }
+
+        {int id = 2;
+        Student studenthashed = studentMap.get(id);
+        if (studenthashed != null) {
+            System.out.println("Student found: " + studenthashed);
+        } else {
+            System.out.println("No student found with ID: " + id);
+        }}
+
+        Student newStudent = new Student(2,"parvej","swe");
+        studentMap.put(newStudent.getStudentId(), newStudent);
         int id = 2;
         Student studenthashed = studentMap.get(id);
         if (studenthashed != null) {
