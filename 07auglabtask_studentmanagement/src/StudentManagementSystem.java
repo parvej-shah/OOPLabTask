@@ -19,15 +19,13 @@ public class StudentManagementSystem {
         allStudents.add(student3);
         allStudents.add(student4);
         allStudents.add(student5);
-
-        // task1_2_show(allStudents);
-        // task2_3_courseEnrollment(allStudents);
-        task2_3_hashmap(allStudents);
+        // taskShowArrayList(allStudents);
+        // enrolement(allStudents);
+        taskHashmap(allStudents);
 
     }
 
-    public static void task2_3_courseEnrollment(List<Student> allStudents) {
-        System.out.println("\nTask 2.3: Course Enrollment with HashSet");
+    public static void enrolement(List<Student> allStudents) {
         java.util.Set<Student> courseEnrolled = new java.util.HashSet<>();
 
         Student s1 = allStudents.get(0);
@@ -38,13 +36,12 @@ public class StudentManagementSystem {
         courseEnrolled.add(s2);
 
         boolean addedAgain = courseEnrolled.add(s2);
-        System.out.println("Trying to add Tamim again. Was it added? " + addedAgain);
-        System.out.println("(Because equals() checks studentId, duplicates are not allowed.)");
+        System.out.println("Tamim again? " + addedAgain);
 
         boolean isEnrolled = courseEnrolled.contains(s2);
         System.out.println("Is Tamim (id=3) enrolled? " + isEnrolled);
 
-        Student checkStudent = allStudents.get(1); // Sakib
+        Student checkStudent = allStudents.get(1); // sakib
         boolean isSakibEnrolled = courseEnrolled.contains(checkStudent);
         System.out.println("Is Sakib (id=2) enrolled? " + isSakibEnrolled);
 
@@ -58,7 +55,7 @@ public class StudentManagementSystem {
             System.out.println(s);
         }
     }
-    public static void task1_2_show(List<Student> allStudents) {
+    public static void taskShowArrayList(List<Student> allStudents) {
 
         System.out.println("All Students in the University");
         for (Student student : allStudents) {
@@ -92,13 +89,13 @@ public class StudentManagementSystem {
 
         System.out.println("\nTotal number of students: " + allStudents.size());
     }
-    public static void task2_3_hashmap(List<Student> allStudents) {
+    public static void taskHashmap(List<Student> allStudents) {
         Map<Integer, Student> studentMap = new HashMap<>();
 
         for (Student student : allStudents) {
             studentMap.put(student.getStudentId(), student);
         }
-        int id = 7;
+        int id = 2;
         Student studenthashed = studentMap.get(id);
         if (studenthashed != null) {
             System.out.println("Student found: " + studenthashed);
