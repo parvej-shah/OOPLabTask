@@ -25,4 +25,18 @@ public class Student {
     public String toString() {
         return "Student ID: " + studentId + ", Name: " + studentName + ", Major: " + major;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Student other = (Student) obj;
+        return studentId == other.studentId;
+    }
+
+    @Override
+    public int hashCode() {
+        return Integer.hashCode(studentId);
+    }
+    
 }
