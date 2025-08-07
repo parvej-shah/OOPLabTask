@@ -22,6 +22,7 @@ public class StudentManagementSystem {
 
         // task1_2_show(allStudents);
         // task2_3_courseEnrollment(allStudents);
+        task2_3_hashmap(allStudents);
 
     }
 
@@ -96,6 +97,13 @@ public class StudentManagementSystem {
 
         for (Student student : allStudents) {
             studentMap.put(student.getStudentId(), student);
+        }
+        int id = 7;
+        Student studenthashed = studentMap.get(id);
+        if (studenthashed != null) {
+            System.out.println("Student found: " + studenthashed);
+        } else {
+            System.out.println("No student found with ID: " + id);
         }
     }
 }
