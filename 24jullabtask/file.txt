@@ -1,0 +1,10 @@
+Written by buffered Writer
+My name is Parvej
+_________________
+Written by FileWriter
+My name is Parvej 2
+___________________
+Written by NIO Writer
+My name is Parvej 3
+i am from iit
+_________________________________

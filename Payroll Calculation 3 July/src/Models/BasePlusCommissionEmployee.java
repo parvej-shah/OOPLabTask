@@ -22,6 +22,10 @@ public class BasePlusCommissionEmployee extends CommissionEmployee{
             this.baseSalary = baseSalary;
     }
 
+    public void increaseBaseSalary() {
+        this.baseSalary =  this.baseSalary*1.10;
+    }
+
     @Override
     public double earnings() {
         return super.earnings() + baseSalary;
